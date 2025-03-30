@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeeszeYing's Birthday Dessert Wishlist 🎂</title>
+    <style>
+        :root {
+            --main-purple: #9400d3;
+            --accent-pink: #ff69b4;
+            --dark-purple: #4b0082;
+            --light-purple: #e1bfff;
+            --bg-gradient: linear-gradient(135deg, #f5e6ff, #e1bfff);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating Dessert Images */
+        .floating-imgs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-imgs img {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            animation: float 10s linear infinite;
+            opacity: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-30vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(148, 0, 211, 0.15);
+        }
+
+        h1 {
+            color: var(--main-purple);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cake-emoji {
+            text-align: center;
+            font-size: 50px;
+            margin: 20px 0;
+            filter: drop-shadow(0 4px 6px rgba(148, 0, 211, 0.2));
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-purple);
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #9370db;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--main-purple);
+            box-shadow: 0 0 8px rgba(148, 0, 211, 0.3);
+            transform: scale(1.02);
+        }
+
+        button {
+            background: var(--main-purple);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: block;
+            margin: 25px auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: #8a2be2;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(148, 0, 211, 0.3);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        button:hover::after {
+            left: 120%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Coupon Styles */
+        .coupon-container {
+            background: linear-gradient(135deg, #f9f3ff, #f3e5ff);
+            border: 3px solid var(--main-purple);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(148,0,211,0.3); }
+            to { box-shadow: 0 0 20px rgba(148,0,211,0.5); }
+        }
+
+        .coupon-ribbon {
+            position: absolute;
+            top: -10px;
+            right: -30px;
+            background: var(--accent-pink);
+            color: white;
+            padding: 15px 40px;
+            transform: rotate(45deg);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .wishlist-items {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(148, 0, 211, 0.1);
+            border-radius: 10px;
+        }
+
+        .wishlist-items li {
+            margin: 10px 0;
+            color: var(--dark-purple);
+            font-size: 16px;
+            list-style: none;
+        }
+
+        .coupon-code {
+            font-size: 24px;
+            color: var(--accent-pink);
+            margin: 15px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .coupon-details {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .valid-until {
+            border-top: 2px dashed var(--main-purple);
+            padding-top: 15px;
+            color: var(--dark-purple);
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .cake-emoji {
+            font-size: 50px;
+            font-weight: bold;
+            color: #4b0082;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+            
+            .cake-emoji {
+                font-size: 40px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Dessert Images -->
+    <div class="floating-imgs"></div>
+
+    <!-- Login Container -->
+    <div class="container" id="loginContainer">
+        <div class="cake-emoji">🎂💜🎉</div>
+        <h1>Birthday Dessert Wish Portal</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label>👑 Your Secret Name:</label>
+                <input type="text" id="username" placeholder="TEESZEYING" required>
+            </div>
+            <div class="form-group">
+                <label>🔑 Magic Code:</label>
+                <input type="password" id="password" placeholder="Boyfriend Birthday" required>
+            </div>
+            <button type="submit">Unlock Wishes 🗝️</button>
+        </form>
+    </div>
+
+    <!-- Wishlist Container -->
+    <div class="container hidden" id="wishlistContainer">
+        <div class="cake-emoji">Happy Birthday</div>
+        <h1>Birthday Dessertlist</h1>
+        <form id="wishlistForm">
+            <div class="form-group">
+                <label>🥇 First Dessert:</label>
+                <input type="text" required>
+            </div>
+            <div class="form-group">
+                <label>🥈 Second Dessert:</label>
+                <input type="text" required>
+            </div>
+            <div class="form-group">
+                <label>🥉 Third Dessert:</label>
+                <input type="text" required>
+            </div>
+            <button type="submit">✨ Generate your Coupon</button>
+        </form>
+
+        <!-- Coupon Section -->
+        <div id="couponSection" class="hidden">
+            <div class="coupon-container">
+                <h3>💜 Birthday Wish Voucher 💜</h3>
+                
+                <div class="wishlist-items">
+                    <h4>Your Wishlist:</h4>
+                    <ul id="dessertList"></ul>
+                </div>
+
+                <div class="coupon-code">🎟️CODE: TSY-040412</div>
+
+                <div class="coupon-details">
+                    <p>✨ How To Redeem ✨</p>
+                    <br>
+                    <ul>
+                        <li>📸 Screenshot this coupon</li>
+                        <li>💌 Show to your Boyfriend</li>
+                        <li>🎁 Valid until: 2026-04-03</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="song/Song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Floating Dessert Images
+        function createFloatingImages() {
+            const container = document.querySelector('.floating-imgs');
+            const desserts = [
+                'song/P1.jpg',
+                'song/P2.jpg',
+                'song/P3.jpg', 
+                'song/P4.jpg', 
+                'song/P5.jpg'  
+            ];
+            
+            // Create 15 floating images
+            for (let i = 0; i < 60; i++) {
+                const img = document.createElement('img');
+                img.src = desserts[i % desserts.length];
+                img.style.width = `${Math.random() * 40 + 60}px`; // 60-100px
+                img.style.left = `${Math.random() * 100}%`;
+                img.style.animationDuration = `${Math.random() * 5 + 8}s`; // 8-13s
+                img.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(img);
+            }
+        }
+
+        // Music Player - Auto-play with interaction fallback
+        function setupMusic() {
+        const audio = document.getElementById('bgMusic');
+        audio.volume = 1;
+    
+        // 尝试自动播放（多数浏览器会阻止）
+        const playPromise = audio.play();
+    
+        // 如果自动播放被阻止
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // 创建"点击播放"提示按钮
+                const playButton = document.createElement('div');
+                playButton.innerHTML = '▶ Music';
+                playButton.style.position = 'fixed';
+                playButton.style.bottom = '20px';
+                playButton.style.right = '20px';
+                playButton.style.background = '#9400d3';
+                playButton.style.color = 'white';
+                playButton.style.padding = '10px 15px';
+                playButton.style.borderRadius = '20px';
+                playButton.style.cursor = 'pointer';
+                playButton.style.zIndex = '100';
+                document.body.appendChild(playButton);
+            
+                // 点击后播放并移除按钮
+                playButton.addEventListener('click', () => {
+                    audio.play();
+                    playButton.remove();
+                });
+            });
+        }
+        }
+        // Login Validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (username === 'TEESZEYING' && password === '050412') {
+                document.getElementById('loginContainer').classList.add('hidden');
+                document.getElementById('wishlistContainer').classList.remove('hidden');
+                createFloatingImages();
+            } else {
+                alert('Incorrect username or password!');
+            }
+        });
+
+        // Wishlist Submission
+        document.getElementById('wishlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const desserts = Array.from(this.querySelectorAll('input')).map(input => input.value.trim());
+            
+            if (desserts.some(dessert => dessert === '')) {
+                alert('Please fill in all dessert choices!');
+                return;
+            }
+
+            // Generate coupon
+            generateCoupon(desserts);
+            alert('Wishes sent! 🎉 Your coupon is ready~');
+        });
+
+        // Generate Coupon
+        function generateCoupon(desserts) {
+            const listHTML = desserts.map((item, index) => 
+                `<li>${index+1}. ${item}</li>`
+            ).join('');
+            
+            document.getElementById('dessertList').innerHTML = listHTML;
+            document.getElementById('wishlistForm').classList.add('hidden');
+            document.getElementById('couponSection').classList.remove('hidden');
+
+            // Store data
+            localStorage.setItem('birthdayWish', JSON.stringify({
+                desserts: desserts,
+                generated: new Date().toISOString()
+            }));
+        }
+
+        // Page Load Handler
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('birthdayWish');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('dessertList').innerHTML = 
+                    data.desserts.map((item, index) => 
+                        `<li>${index+1}. ${item}</li>`
+                    ).join('');
+                document.getElementById('loginContainer').classList.add('hidden');
+                document.getElementById('wishlistContainer').classList.remove('hidden');
+                document.getElementById('couponSection').classList.remove('hidden');
+                document.getElementById('wishlistForm').classList.add('hidden');
+            }
+            createFloatingImages();
+            setupMusic();
+        });
+    </script>
+</body>
+</html>
